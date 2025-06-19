@@ -38,7 +38,7 @@ class PrescriptionDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item['DrugName'] ?? '',
+                    item['drug_name'] ?? '',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -46,10 +46,12 @@ class PrescriptionDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Text('💊 Hàm lượng: ${item['Concentration']}'),
-                  Text('📦 Số lượng: ${item['Quantity']} ${item['PrescribedUnit']}'),
-                  Text('⏱ Thời điểm uống: ${item['TimeOfDay']}'),
-                  Text('🍽 Trước/Sau ăn: ${item['MealTiming'] ?? "Không rõ"}'),
+                  Text('💊 Hàm lượng: ${item['concentration'] ?? ''}'),
+                  Text(
+                    '📦 Số lượng: ${item['quantity']} ${item['prescribed_unit']}',
+                  ),
+                  Text('⏱ Thời điểm uống: ${item['time_of_day']}'),
+                  Text('🍽 Trước/Sau ăn: ${item['meal_timing'] ?? "Không rõ"}'),
                 ],
               ),
             ),

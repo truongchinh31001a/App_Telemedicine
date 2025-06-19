@@ -31,16 +31,16 @@ class PrescriptionService {
       final Map<int, Map<String, dynamic>> grouped = {};
 
       for (var item in data) {
-        final recordId = item['RecordID'];
+        final recordId = item['record_id']; // ✅ đúng key
         if (!grouped.containsKey(recordId)) {
           grouped[recordId] = {
-            'date': item['StartDate'].split('T')[0],
-            'doctor': 'BS. ${item['DoctorName']}',
+            'date': item['start_date'], // ✅ đúng key
+            'doctor': 'BS. ${item['doctor_name']}', // ✅ đúng key
             'recordId': recordId,
             'drugs': <String>[],
           };
         }
-        grouped[recordId]!['drugs'].add(item['DrugName']);
+        grouped[recordId]!['drugs'].add(item['drug_name']); // ✅ đúng key
       }
 
       return grouped.values.toList();
@@ -49,6 +49,7 @@ class PrescriptionService {
     }
   }
 
+  /// Lấy chi tiết đơn thuốc theo recordId
   /// Lấy chi tiết đơn thuốc theo recordId
   static Future<List<Map<String, dynamic>>> getPrescriptionDetails(
     int recordId,
@@ -60,7 +61,22 @@ class PrescriptionService {
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      return List<Map<String, dynamic>>.from(data);
+
+      // Map chi tiết từng thuốc
+      return data
+          .map<Map<String, dynamic>>(
+            (item) => {
+              'detailId': item['detail_id'],
+              'drugName': item['drug_name'],
+              'drugUnit': item['drug_unit'],
+              'concentration': item['concentration'],
+              'prescribedUnit': item['prescribed_unit'],
+              'quantity': item['quantity'],
+              'timeOfDay': item['time_of_day'],
+              'mealTiming': item['meal_timing'],
+            },
+          )
+          .toList();
     } else {
       throw Exception('Lỗi khi tải chi tiết đơn thuốc: ${response.statusCode}');
     }

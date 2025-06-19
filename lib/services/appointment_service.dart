@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppointmentService {
-  static const String _baseUrl = 'http://192.168.1.197:3050/api';
+  static const String _baseUrl = 'http://192.168.1.197:3000/api';
 
   static Future<List<Map<String, dynamic>>> fetchAppointmentsByPatient() async {
     final prefs = await SharedPreferences.getInstance();

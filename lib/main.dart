@@ -11,7 +11,8 @@ void main() async {
   final isLoggedIn = await AuthStorage.isLoggedIn();
 
   runApp(MyApp(
-    initialScreen: isLoggedIn ? const BiometricLoginScreen() : const LoginScreen(),
+    // initialScreen: isLoggedIn ? const BiometricLoginScreen() : const LoginScreen(),
+    initialScreen: const LoginScreen(),
   ));
 }
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
         useMaterial3: true,
+        fontFamily: 'NotoSans',
       ),
       home: initialScreen,
     );

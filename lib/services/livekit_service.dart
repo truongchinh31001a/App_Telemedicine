@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-const String apiBaseUrl = 'http://192.168.1.197:3050';
+const String apiBaseUrl = 'http://192.168.1.197:3000';
 const String livekitHost = 'wss://tele-oovrxt5d.livekit.cloud';
 
 Future<String?> fetchLivekitToken(String room, String name) async {
