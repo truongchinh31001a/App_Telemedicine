@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:teleapp/screens/login_screen.dart';
-import 'package:teleapp/screens/biometric_login_screen.dart';
-import 'package:teleapp/utils/auth_storage.dart';
+// import 'package:teleapp/screens/biometric_login_screen.dart';
+// import 'package:teleapp/utils/auth_storage.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>(); // 👈 Thêm dòng này
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final isLoggedIn = await AuthStorage.isLoggedIn();
+  // final isLoggedIn = await AuthStorage.isLoggedIn();
 
   runApp(MyApp(
     // initialScreen: isLoggedIn ? const BiometricLoginScreen() : const LoginScreen(),
