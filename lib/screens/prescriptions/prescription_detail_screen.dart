@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:teleapp/models/prescription_detail.dart';
 
 class PrescriptionDetailScreen extends StatelessWidget {
   final String date;
-  final List<Map<String, dynamic>> details;
+  final List<PrescriptionDetail> details;
 
   const PrescriptionDetailScreen({
     super.key,
@@ -15,7 +16,7 @@ class PrescriptionDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
-        title: const Text('Chi tiết đơn thuốc'),
+        title: Text('Chi tiết đơn thuốc $date'),
         backgroundColor: Colors.teal.shade600,
         foregroundColor: Colors.white,
       ),
@@ -38,7 +39,7 @@ class PrescriptionDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item['drug_name'] ?? '',
+                    item.drugName,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -46,12 +47,10 @@ class PrescriptionDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Text('💊 Hàm lượng: ${item['concentration'] ?? ''}'),
-                  Text(
-                    '📦 Số lượng: ${item['quantity']} ${item['prescribed_unit']}',
-                  ),
-                  Text('⏱ Thời điểm uống: ${item['time_of_day']}'),
-                  Text('🍽 Trước/Sau ăn: ${item['meal_timing'] ?? "Không rõ"}'),
+                  Text('💊 Hàm lượng: ${item.concentration}'),
+                  Text('📦 Số lượng: ${item.quantity} ${item.prescribedUnit}'),
+                  Text('⏱ Thời điểm uống: ${item.timeOfDay}'),
+                  Text('🍽 Trước/Sau ăn: ${item.mealTiming}'),
                 ],
               ),
             ),

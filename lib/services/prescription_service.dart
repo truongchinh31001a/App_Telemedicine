@@ -49,8 +49,7 @@ class PrescriptionService {
     }
   }
 
-  /// Lấy chi tiết đơn thuốc theo recordId
-  /// Lấy chi tiết đơn thuốc theo recordId
+  /// Lấy chi tiết đơn thuốc theo ID đơn thuốc
   static Future<List<Map<String, dynamic>>> getPrescriptionDetails(
     int recordId,
   ) async {
@@ -62,18 +61,17 @@ class PrescriptionService {
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
 
-      // Map chi tiết từng thuốc
       return data
           .map<Map<String, dynamic>>(
             (item) => {
-              'detailId': item['detail_id'],
-              'drugName': item['drug_name'],
-              'drugUnit': item['drug_unit'],
+              'detail_id': item['detail_id'],
+              'drug_name': item['drug_name'],
+              'drug_unit': item['drug_unit'],
               'concentration': item['concentration'],
-              'prescribedUnit': item['prescribed_unit'],
+              'prescribed_unit': item['prescribed_unit'],
               'quantity': item['quantity'],
-              'timeOfDay': item['time_of_day'],
-              'mealTiming': item['meal_timing'],
+              'time_of_day': item['time_of_day'],
+              'meal_timing': item['meal_timing'],
             },
           )
           .toList();
