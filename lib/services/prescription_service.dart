@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:teleapp/models/prescription/prescription_detail.dart';
+import 'package:teleapp/models/prescription/prescription_record.dart';
 import 'package:teleapp/utils/auth_storage.dart';
 
 class PrescriptionService {
@@ -18,7 +20,7 @@ class PrescriptionService {
   }
 
   /// Lấy danh sách đơn thuốc theo bệnh nhân
-  static Future<List<Map<String, dynamic>>> getPrescriptionsByPatient(
+  static Future<List<PrescriptionRecord>> getPrescriptionsByPatient(
     int patientId,
   ) async {
     final headers = await _buildHeaders();
@@ -28,19 +30,21 @@ class PrescriptionService {
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-      final Map<int, Map<String, dynamic>> grouped = {};
+      final Map<int, PrescriptionRecord> grouped = {};
 
       for (var item in data) {
-        final recordId = item['record_id']; // ✅ đúng key
+        final int recordId = item['record_id'];
+
         if (!grouped.containsKey(recordId)) {
-          grouped[recordId] = {
-            'date': item['start_date'], // ✅ đúng key
-            'doctor': 'BS. ${item['doctor_name']}', // ✅ đúng key
-            'recordId': recordId,
-            'drugs': <String>[],
-          };
+          grouped[recordId] = PrescriptionRecord(
+            recordId: recordId,
+            date: item['start_date'],
+            doctor: 'BS. ${item['doctor_name']}',
+            drugs: [],
+          );
         }
-        grouped[recordId]!['drugs'].add(item['drug_name']); // ✅ đúng key
+
+        grouped[recordId]!.drugs.add(item['drug_name']);
       }
 
       return grouped.values.toList();
@@ -50,7 +54,7 @@ class PrescriptionService {
   }
 
   /// Lấy chi tiết đơn thuốc theo ID đơn thuốc
-  static Future<List<Map<String, dynamic>>> getPrescriptionDetails(
+  static Future<List<PrescriptionDetail>> getPrescriptionDetails(
     int recordId,
   ) async {
     final headers = await _buildHeaders();
@@ -60,21 +64,7 @@ class PrescriptionService {
 
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
-
-      return data
-          .map<Map<String, dynamic>>(
-            (item) => {
-              'detail_id': item['detail_id'],
-              'drug_name': item['drug_name'],
-              'drug_unit': item['drug_unit'],
-              'concentration': item['concentration'],
-              'prescribed_unit': item['prescribed_unit'],
-              'quantity': item['quantity'],
-              'time_of_day': item['time_of_day'],
-              'meal_timing': item['meal_timing'],
-            },
-          )
-          .toList();
+      return data.map((item) => PrescriptionDetail.fromJson(item)).toList();
     } else {
       throw Exception('Lỗi khi tải chi tiết đơn thuốc: ${response.statusCode}');
     }

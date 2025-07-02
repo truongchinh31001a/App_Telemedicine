@@ -1,10 +1,10 @@
 // lib/screens/main_screen.dart
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
-import 'book_screen.dart';
-import 'appointments_screen.dart';
-import 'prescriptions_screen.dart';
-import 'setting_screen.dart';
+import 'book/book_screen.dart';
+import 'appointment/appointments_screen.dart';
+import 'prescriptions/prescriptions_screen.dart';
+import 'setting/setting_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override

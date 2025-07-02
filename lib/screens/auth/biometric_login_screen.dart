@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teleapp/services/biometric_service.dart';
 import 'package:teleapp/utils/auth_storage.dart';
-import 'main_screen.dart';
+import '../main_screen.dart';
 import 'login_screen.dart';
 
 class BiometricLoginScreen extends StatefulWidget {

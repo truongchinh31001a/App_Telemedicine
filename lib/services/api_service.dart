@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:teleapp/screens/login_screen.dart';
+import 'package:teleapp/screens/auth/login_screen.dart';
 import 'package:teleapp/utils/auth_storage.dart';
 import 'package:teleapp/main.dart'; // chứa navigatorKey
 

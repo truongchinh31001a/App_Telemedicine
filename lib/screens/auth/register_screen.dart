@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 import 'package:teleapp/screens/capture_image/capture_image_screen.dart';
-import 'package:teleapp/screens/login_screen.dart';
+import 'package:teleapp/screens/auth/login_screen.dart';
 import 'package:teleapp/services/api_service.dart';
 
 class RegisterScreen extends StatefulWidget {

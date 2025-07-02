@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teleapp/models/prescription_detail.dart';
+import 'package:teleapp/models/prescription/prescription_detail.dart';
 
 class PrescriptionDetailScreen extends StatelessWidget {
   final String date;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:teleapp/screens/forgot_password_screen.dart';
-import 'package:teleapp/screens/register_screen.dart';
+import 'package:teleapp/screens/auth/forgot_password_screen.dart';
+import 'package:teleapp/screens/auth/register_screen.dart';
 import 'package:teleapp/services/api_service.dart';
 import 'package:teleapp/utils/auth_storage.dart';
 import 'dart:convert';
-import 'main_screen.dart';
+import '../main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

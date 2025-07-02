@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:livekit_client/livekit_client.dart';
-import '../services/livekit_service.dart';
-import '../widgets/video_grid.dart';
-import '../widgets/control_buttons.dart';
+import '../../services/livekit_service.dart';
+import '../../widgets/video_grid.dart';
+import '../../widgets/control_buttons.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class LiveKitRoomScreen extends StatefulWidget {

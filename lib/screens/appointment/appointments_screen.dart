@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teleapp/models/appointment.dart';
 import 'package:teleapp/services/appointment_service.dart';
 import 'livekit_room_screen.dart';
 
@@ -10,7 +11,7 @@ class AppointmentsScreen extends StatefulWidget {
 }
 
 class _AppointmentsScreenState extends State<AppointmentsScreen> {
-  List<Map<String, dynamic>> appointments = [];
+  List<Appointment> appointments = [];
   bool isLoading = true;
 
   @override
@@ -36,11 +37,11 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
 
   String getStatusLabel(String status) {
     switch (status.toLowerCase()) {
-      case 'confirmed':
+      case 'đã duyệt':
         return '✅ Đã duyệt';
-      case 'pending':
+      case 'chờ duyệt':
         return '🕓 Chờ duyệt';
-      case 'canceled':
+      case 'đã hủy':
         return '❌ Đã hủy';
       default:
         return status;
@@ -50,7 +51,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   @override
   Widget build(BuildContext context) {
     final confirmed = appointments
-        .where((a) => a['Status']?.toLowerCase() == 'confirmed')
+        .where((a) => a.status.toLowerCase() == 'đã duyệt')
         .toList();
 
     return Scaffold(
@@ -68,14 +69,6 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                   itemCount: confirmed.length,
                   itemBuilder: (context, index) {
                     final item = confirmed[index];
-                    final doctor = item['StaffName'];
-                    final patient = item['PatientName'];
-                    final roomName = item['Room'];
-                    final statusLabel = getStatusLabel(item['Status']);
-                    final workDate = DateTime.parse(item['WorkDate']).toLocal();
-                    final startTime = TimeOfDay.fromDateTime(
-                      DateTime.parse(item['StartTime']),
-                    );
 
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -87,18 +80,18 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('👨‍⚕️ Bác sĩ: $doctor',
+                            Text('👨‍⚕️ Bác sĩ: ${item.doctorName}',
                                 style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold)),
                             const SizedBox(height: 6),
-                            Text('👤 Bệnh nhân: $patient'),
-                            Text('🏥 Phòng: $roomName'),
-                            Text('📌 Trạng thái: $statusLabel'),
+                            Text('👤 Bệnh nhân: ${item.patientName}'),
+                            Text('🏥 Phòng: ${item.room}'),
+                            Text('📌 Trạng thái: ${getStatusLabel(item.status)}'),
                             Text(
-                              '📆 Ngày: ${workDate.day}/${workDate.month}/${workDate.year}',
+                              '📆 Ngày: ${item.workDate.day}/${item.workDate.month}/${item.workDate.year}',
                             ),
-                            Text('⏰ Giờ: ${startTime.format(context)}'),
+                            Text('⏰ Giờ: ${item.startTime.format(context)}'),
                             const SizedBox(height: 12),
                             Align(
                               alignment: Alignment.centerRight,
@@ -114,8 +107,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (_) => LiveKitRoomScreen(
-                                        name: patient,
-                                        room: roomName,
+                                        name: item.patientName,
+                                        room: item.room,
                                       ),
                                     ),
                                   );

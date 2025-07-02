@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teleapp/screens/medical_examination_form/dermatology-form-screen.dart';
-import 'package:teleapp/screens/medical_examination_form/gynecology-form-screen.dart';
-import 'package:teleapp/screens/medical_examination_form/surgery-followup-form-screen.dart';
+import 'package:teleapp/screens/book/medical_examination_form/dermatology-form-screen.dart';
+import 'package:teleapp/screens/book/medical_examination_form/gynecology-form-screen.dart';
+import 'package:teleapp/screens/book/medical_examination_form/surgery-followup-form-screen.dart';
 
 class BookScreen extends StatelessWidget {
   const BookScreen({super.key});

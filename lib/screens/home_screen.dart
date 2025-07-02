@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:teleapp/screens/appointments_screen.dart';
-import 'package:teleapp/screens/book_screen.dart';
-import 'package:teleapp/screens/medical_history_screen.dart';
-import 'package:teleapp/screens/prescriptions_screen.dart';
-import 'health_record_screen.dart';
+import 'package:teleapp/screens/appointment/appointments_screen.dart';
+import 'package:teleapp/screens/book/book_screen.dart';
+import 'package:teleapp/screens/medical_record/medical_history_screen.dart';
+import 'package:teleapp/screens/prescriptions/prescriptions_screen.dart';
+import 'medical_record/health_record_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

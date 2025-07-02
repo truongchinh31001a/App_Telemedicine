@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teleapp/screens/login_screen.dart';
+import 'package:teleapp/screens/auth/login_screen.dart';
 // import 'package:teleapp/screens/biometric_login_screen.dart';
 // import 'package:teleapp/utils/auth_storage.dart';
 

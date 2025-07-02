@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:teleapp/screens/change_password_screen.dart';
-import 'package:teleapp/screens/personal_info_screen.dart';
+import 'package:teleapp/screens/setting/change_password_screen.dart';
+import 'package:teleapp/screens/setting/personal_info_screen.dart';
 import 'package:teleapp/services/user_service.dart';
 import 'package:teleapp/utils/auth_storage.dart';
-import 'login_screen.dart';
+import '../auth/login_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   @override

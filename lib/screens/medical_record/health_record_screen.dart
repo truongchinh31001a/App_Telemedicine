@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:teleapp/screens/record_detail_screen.dart';
+import 'package:teleapp/screens/medical_record/record_detail_screen.dart';
 import 'package:teleapp/services/medical_record_service.dart';
 
 class HealthRecordScreen extends StatefulWidget {
