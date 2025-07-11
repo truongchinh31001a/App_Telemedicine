@@ -65,6 +65,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void _skipLogin() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (_) => MainScreen()),
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +86,20 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
-            const SizedBox(height: 30),
+            Align(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                onPressed: _skipLogin,
+                child: const Text(
+                  'Bỏ qua',
+                  style: TextStyle(
+                    color: Colors.teal,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
